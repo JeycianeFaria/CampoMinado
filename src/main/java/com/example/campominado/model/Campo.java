@@ -91,7 +91,7 @@ public class Campo {
             aberto = true;
 
             if (minado) {
-                throw new ExplosaoException();
+                //TODO Implementar nova versao
             }
 
             if (vizinhancaSegura()) {
@@ -121,17 +121,5 @@ public class Campo {
         minado = true;
     }
 
-    public String toString() {
-        if (marcado){
-            return "x";
-        } else if (aberto && minado) {
-            return "*";
-        } else if (aberto && minasNaVizinhaca() > 0){
-            return Long.toString(minasNaVizinhaca());   //TODO: tem como adicionar cor no java pelo terminar,pesquisar e implantar.
-        }else if (aberto){
-            return " ";
-        }else {
-            return "?";
-        }
-    }
+
 }
