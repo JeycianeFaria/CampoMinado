@@ -1,7 +1,5 @@
 package com.example.campominado.model;
 
-import com.example.campominado.exceptions.ExplosaoException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,18 +44,18 @@ public class Campo {
         return coluna;
     }
 
-    boolean objetivoAlcancado(){
+    boolean objetivoAlcancado() {
         boolean desvendado = !minado && aberto;
         boolean protegido = minado && marcado;
 
         return desvendado || protegido;
     }
 
-    long minasNaVizinhaca(){
+    long minasNaVizinhaca() {
         return vizinhos.stream().filter(v -> v.minado).count();
     }
 
-    void reiniciar(){
+    void reiniciar() {
         aberto = false;
         minado = false;
         marcado = false;
@@ -117,7 +115,7 @@ public class Campo {
     }
 
 
-    void minar(){
+    void minar() {
         minado = true;
     }
 
