@@ -121,7 +121,7 @@ class CampoTest {
     }
 
     @Test
-    void abrirCampoMinadoNapMarcadoNaoAberto() {
+    void abrirCampoMinadoNaoMarcadoNaoAberto() {
 
         campo.minar();
 
