@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-public class Tabuleiro implements CampoObservador{
+public class Tabuleiro implements CampoObservador {
 
     private int linhas;
     private int colunas;
@@ -26,7 +26,7 @@ public class Tabuleiro implements CampoObservador{
 
     }
 
-    public void registrarObservadores(Consumer<Boolean> observador){
+    public void registrarObservadores(Consumer<Boolean> observador) {
         observadores.add(observador);
     }
 
@@ -51,23 +51,14 @@ public class Tabuleiro implements CampoObservador{
 
     public void abrirCampo(int linha, int coluna) {
 
-        try {
-
-            campos.parallelStream()
-                    .filter(c -> c.getLinha() == linha && c.getColuna() == coluna)
-                    .findFirst()
-                    .ifPresent(c -> c.abrir());
-
-        } catch (Exception e) {
-            //FIXME Ajustar implementação do método abrir
-            campos.forEach(c -> c.setAberto(true));
-            throw e;
-
-        }
+        campos.parallelStream()
+                .filter(c -> c.getLinha() == linha && c.getColuna() == coluna)
+                .findFirst()
+                .ifPresent(c -> c.abrir());
 
     }
 
-    public void mostrarMinas(){
+    public void mostrarMinas() {
         campos.stream()
                 .filter(c -> c.isMinado())
                 .forEach(c -> c.setAberto(true));
@@ -85,7 +76,7 @@ public class Tabuleiro implements CampoObservador{
         for (int linha = 0; linha < linhas; linha++) {
             for (int coluna = 0; coluna < colunas; coluna++) {
 
-                Campo campo = new Campo(linha,coluna );
+                Campo campo = new Campo(linha, coluna);
                 campo.registrarObservadores(this);
                 campos.add(campo);
 
@@ -129,10 +120,10 @@ public class Tabuleiro implements CampoObservador{
     @Override
     public void eventoOcorreu(Campo campo, CampoEvento evento) {
 
-        if (evento == CampoEvento.EXPLODIR){
+        if (evento == CampoEvento.EXPLODIR) {
             mostrarMinas();
             notificarObservadores(false);
-        } else if (objetivoAlcancado()){
+        } else if (objetivoAlcancado()) {
             System.out.println("Ganhou...");
             notificarObservadores(true);
         }
