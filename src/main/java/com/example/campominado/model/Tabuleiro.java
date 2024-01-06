@@ -67,6 +67,12 @@ public class Tabuleiro implements CampoObservador{
 
     }
 
+    public void mostrarMinas(){
+        campos.stream()
+                .filter(c -> c.isMinado())
+                .forEach(c -> c.setAberto(true));
+    }
+
     public void marcarCampo(int linha, int coluna) {
         campos.parallelStream()
                 .filter(c -> c.getLinha() == linha && c.getColuna() == coluna)
@@ -124,7 +130,7 @@ public class Tabuleiro implements CampoObservador{
     public void eventoOcorreu(Campo campo, CampoEvento evento) {
 
         if (evento == CampoEvento.EXPLODIR){
-            System.out.println("Perdeu...");
+            mostrarMinas();
             notificarObservadores(false);
         } else if (objetivoAlcancado()){
             System.out.println("Ganhou...");
