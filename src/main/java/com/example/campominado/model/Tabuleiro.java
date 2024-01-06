@@ -2,6 +2,7 @@ package com.example.campominado.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class Tabuleiro implements CampoObservador{
@@ -11,6 +12,7 @@ public class Tabuleiro implements CampoObservador{
     private int minas;
 
     private final List<Campo> campos = new ArrayList<>();
+    private final List<Consumer<Boolean>> observadores = new ArrayList<>();
 
 
     public Tabuleiro(int linhas, int colunas, int minas) {
@@ -22,6 +24,15 @@ public class Tabuleiro implements CampoObservador{
         associarVizinhos();
         sortearAsMinas();
 
+    }
+
+    public void registrarObservadores(Consumer<Boolean> observador){
+        observadores.add(observador);
+    }
+
+    private void notificarObservadores(boolean resultado) {
+        observadores.stream()
+                .forEach(o -> o.accept(resultado));
     }
 
     public Campo getCampo(int linha, int coluna) {
@@ -114,8 +125,10 @@ public class Tabuleiro implements CampoObservador{
 
         if (evento == CampoEvento.EXPLODIR){
             System.out.println("Perdeu...");
+            notificarObservadores(false);
         } else if (objetivoAlcancado()){
             System.out.println("Ganhou...");
+            notificarObservadores(true);
         }
 
     }
