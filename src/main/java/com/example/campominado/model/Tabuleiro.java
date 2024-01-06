@@ -34,6 +34,10 @@ public class Tabuleiro implements CampoObservador {
         return colunas;
     }
 
+    public void paraCadaCampo(Consumer<Campo> funcao){
+        campos.forEach(funcao);
+    }
+
     public void registrarObservadores(Consumer<Boolean> observador) {
         observadores.add(observador);
     }
