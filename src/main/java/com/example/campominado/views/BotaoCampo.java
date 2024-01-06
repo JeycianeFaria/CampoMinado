@@ -10,6 +10,8 @@ public class BotaoCampo extends JButton implements CampoObservador {
 
     public BotaoCampo(Campo campo) {
 
+        campo.registrarObservadores(this);
+
     }
 
     @Override
