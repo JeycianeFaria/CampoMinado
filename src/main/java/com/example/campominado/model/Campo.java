@@ -66,8 +66,8 @@ public class Campo {
         return desvendado || protegido;
     }
 
-    public long minasNaVizinhaca() {
-        return vizinhos.stream().filter(v -> v.minado).count();
+    public int minasNaVizinhaca() {
+        return (int) vizinhos.stream().filter(v -> v.minado).count();
     }
 
     void reiniciar() {
@@ -120,7 +120,7 @@ public class Campo {
     }
 
 
-    boolean vizinhancaSegura() {
+    public boolean vizinhancaSegura() {
         return vizinhos.stream().noneMatch(v -> v.minado);
     }
 
