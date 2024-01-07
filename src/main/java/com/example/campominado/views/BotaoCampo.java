@@ -60,6 +60,7 @@ public class BotaoCampo extends JButton implements CampoObservador, MouseListene
     private void aplicarEstiloExplodir() {
 
         setBackground(BG_EXPLODIR);
+        setForeground(Color.WHITE);
         setText("X");
 
     }
@@ -67,6 +68,7 @@ public class BotaoCampo extends JButton implements CampoObservador, MouseListene
     private void aplicarEstiloMarcar() {
 
         setBackground(BG_MARCAR);
+        setForeground(Color.BLACK);
         setText("M");
 
     }
