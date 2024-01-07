@@ -65,7 +65,11 @@ public class BotaoCampo extends JButton implements CampoObservador, MouseListene
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        if (e.getButton() == 1 ){
+            campo.abrir();
+        }else {
+            campo.alternarMarcacao();
+        }
     }
 
     public void mouseClicked(MouseEvent e) {
