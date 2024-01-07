@@ -58,6 +58,10 @@ public class BotaoCampo extends JButton implements CampoObservador, MouseListene
     }
 
     private void aplicarEstiloExplodir() {
+
+        setBackground(BG_EXPLODIR);
+        setText("X");
+
     }
 
     private void aplicarEstiloMarcar() {
