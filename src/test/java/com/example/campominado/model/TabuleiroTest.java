@@ -12,31 +12,31 @@ class TabuleiroTest {
 
     @BeforeEach
     void setUp() {
-        tabuleiro = new Tabuleiro(2,2,1);
+        tabuleiro = new Tabuleiro(2, 2, 1);
     }
 
     @Test
-    void testGetCampo(){
+    void testGetCampo() {
 
-        var result = tabuleiro.getCampo(1,1);
+        var result = tabuleiro.getCampo(1, 1);
 
-        assertEquals(1 , result.getLinha());
-        assertEquals(1 , result.getColuna());
+        assertEquals(1, result.getLinha());
+        assertEquals(1, result.getColuna());
         assertEquals(Campo.class, result.getClass());
     }
 
     @Test
-    void testGetCampoExceptionCampoNaoEncontrado(){
-        assertThrows(CampoNaoEncontradoException.class, () -> tabuleiro.getCampo(5,5) );
+    void testGetCampoExceptionCampoNaoEncontrado() {
+        assertThrows(CampoNaoEncontradoException.class, () -> tabuleiro.getCampo(5, 5));
     }
 
     @Test
     void testAbrirCampo() {
 
-        var campo = tabuleiro.getCampo(1,1);
+        var campo = tabuleiro.getCampo(1, 1);
         campo.reiniciar();
 
-        tabuleiro.abrirCampo(1,1);
+        tabuleiro.abrirCampo(1, 1);
 
         assertTrue(campo.isAberto());
 
@@ -45,9 +45,9 @@ class TabuleiroTest {
     @Test
     void testMarcarCampo() {
 
-        var campo = tabuleiro.getCampo(1,1);
+        var campo = tabuleiro.getCampo(1, 1);
 
-        tabuleiro.marcarCampo(1,1 );
+        tabuleiro.marcarCampo(1, 1);
 
         assertTrue(campo.isMarcado());
 
@@ -65,9 +65,9 @@ class TabuleiroTest {
     @Test
     void testReiniciar() {
 
-        var campo = tabuleiro.getCampo(1,1);
+        var campo = tabuleiro.getCampo(1, 1);
 
-        tabuleiro.marcarCampo(1,1);
+        tabuleiro.marcarCampo(1, 1);
 
         tabuleiro.reiniciar();
 

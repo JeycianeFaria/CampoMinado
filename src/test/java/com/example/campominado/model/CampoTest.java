@@ -91,7 +91,7 @@ class CampoTest {
     @Test
     void abrirCampoNaoMinadoNaoMarcadoNaoAberto() {
 
-        boolean result  = campo.abrir();
+        boolean result = campo.abrir();
 
         assertTrue(campo.isAberto());
         assertTrue(result);
@@ -102,7 +102,7 @@ class CampoTest {
 
         campo.alternarMarcacao();
 
-        boolean result  = campo.abrir();
+        boolean result = campo.abrir();
 
         assertFalse(campo.isAberto());
         assertFalse(result);
@@ -114,7 +114,7 @@ class CampoTest {
         campo.alternarMarcacao();
         campo.minar();
 
-        boolean result  = campo.abrir();
+        boolean result = campo.abrir();
 
         assertFalse(campo.isAberto());
         assertFalse(result);
@@ -131,7 +131,7 @@ class CampoTest {
     @Test
     void abrirCampoNaoMinadoNaoMarcadoAberto() {
         campo.abrir();
-        boolean result  = campo.abrir();
+        boolean result = campo.abrir();
 
         assertTrue(campo.isAberto());
         assertFalse(result);
@@ -141,14 +141,14 @@ class CampoTest {
     @Test
     void abrirCampoComVizinhos() {
 
-        Campo vizinho = new Campo(2,2);
-        Campo vizinhoDoVizinho = new Campo(1,1);
+        Campo vizinho = new Campo(2, 2);
+        Campo vizinhoDoVizinho = new Campo(1, 1);
 
         vizinho.adicionarVizinho(vizinhoDoVizinho);
         campo.adicionarVizinho(vizinho);
 
 
-        boolean result  = campo.abrir();
+        boolean result = campo.abrir();
 
         assertTrue(campo.isAberto());
         assertTrue(vizinho.isAberto());
@@ -160,9 +160,9 @@ class CampoTest {
     @Test
     void abrirCampoComVizinhosMinado() {
 
-        Campo vizinho = new Campo(2,2);
-        Campo vizinhoDoVizinho = new Campo(1,1);
-        Campo vizinhoDoVizinho2 = new Campo(1,2);
+        Campo vizinho = new Campo(2, 2);
+        Campo vizinhoDoVizinho = new Campo(1, 1);
+        Campo vizinhoDoVizinho2 = new Campo(1, 2);
 
         vizinhoDoVizinho.minar();
 
@@ -171,7 +171,7 @@ class CampoTest {
         campo.adicionarVizinho(vizinho);
 
 
-        boolean result  = campo.abrir();
+        boolean result = campo.abrir();
 
         assertTrue(campo.isAberto());
         assertTrue(vizinho.isAberto());
@@ -186,11 +186,11 @@ class CampoTest {
 
         campo.alternarMarcacao();
 
-        String result  = campo.toString();
+        String result = campo.toString();
 
         assertFalse(campo.isAberto());
         assertTrue(campo.isMarcado());
-        assertEquals("x",result);
+        assertEquals("x", result);
     }
 
 
@@ -200,29 +200,29 @@ class CampoTest {
         campo.abrir();
         campo.minar();
 
-        String result  = campo.toString();
+        String result = campo.toString();
 
         assertTrue(campo.isAberto());
         assertTrue(campo.isMinado());
-        assertEquals("*",result);
+        assertEquals("*", result);
     }
 
     @Test
     void testToStringAbertoVizinhoMinado() {
 
-        Campo vizinho = new Campo(2,2);
+        Campo vizinho = new Campo(2, 2);
         vizinho.minar();
 
         campo.adicionarVizinho(vizinho);
         campo.abrir();
 
 
-        String result  = campo.toString();
+        String result = campo.toString();
 
         assertTrue(campo.isAberto());
         assertFalse(vizinho.isAberto());
         assertTrue(vizinho.isMinado());
-        assertEquals("1",result);
+        assertEquals("1", result);
     }
 
 
@@ -231,19 +231,19 @@ class CampoTest {
 
         campo.abrir();
 
-        String result  = campo.toString();
+        String result = campo.toString();
 
         assertTrue(campo.isAberto());
-        assertEquals(" ",result);
+        assertEquals(" ", result);
     }
 
     @Test
     void testToStringFechado() {
 
-        String result  = campo.toString();
+        String result = campo.toString();
 
         assertFalse(campo.isAberto());
-        assertEquals("?",result);
+        assertEquals("?", result);
     }
 
     @Test
@@ -261,8 +261,8 @@ class CampoTest {
 
     @Test
     void testGetLinhaEColuna() {
-        assertEquals(3,campo.getLinha());
-        assertEquals(3,campo.getColuna());
+        assertEquals(3, campo.getLinha());
+        assertEquals(3, campo.getColuna());
     }
 
     @Test
@@ -311,7 +311,7 @@ class CampoTest {
     }
 
     @Test
-    void testSetAbertoTrue(){
+    void testSetAbertoTrue() {
         boolean aberto = true;
 
         campo.setAberto(aberto);
@@ -321,7 +321,7 @@ class CampoTest {
     }
 
     @Test
-    void testSetAbertoFalse(){
+    void testSetAbertoFalse() {
         boolean aberto = false;
 
         campo.setAberto(aberto);

@@ -45,7 +45,7 @@ public class Campo {
     void setAberto(boolean aberto) {
         this.aberto = aberto;
 
-        if (aberto){
+        if (aberto) {
             notificarObservadores(CampoEvento.ABRIR);
         }
 
