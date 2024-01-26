@@ -15,7 +15,6 @@ public class BotaoCampo extends JButton implements CampoObservador, MouseListene
     private final Color BG_MARCAR = new Color(8, 179, 247);
     private final Color BG_EXPLODIR = new Color(189, 66, 68);
     private final Color TEXTO_VERDE = new Color(0, 100, 0);
-
     private Campo campo;
 
 
@@ -31,6 +30,7 @@ public class BotaoCampo extends JButton implements CampoObservador, MouseListene
         campo.registrarObservadores(this);
 
     }
+
 
     @Override
     public void eventoOcorreu(Campo campo, CampoEvento evento) {
@@ -53,30 +53,6 @@ public class BotaoCampo extends JButton implements CampoObservador, MouseListene
             repaint();
             validate();
         });
-
-    }
-
-    private void aplicarEstiloPadrao() {
-
-        setBorder(BorderFactory.createBevelBorder(0));
-        setBackground(BG_PADRAO);
-        setText("");
-
-    }
-
-    private void aplicarEstiloExplodir() {
-
-        setBackground(BG_EXPLODIR);
-        setForeground(Color.WHITE);
-        setText("X");
-
-    }
-
-    private void aplicarEstiloMarcar() {
-
-        setBackground(BG_MARCAR);
-        setForeground(Color.BLACK);
-        setText("M");
 
     }
 
@@ -113,6 +89,30 @@ public class BotaoCampo extends JButton implements CampoObservador, MouseListene
 
     }
 
+    private void aplicarEstiloMarcar() {
+
+        setBackground(BG_MARCAR);
+        setForeground(Color.BLACK);
+        setText("M");
+
+    }
+
+    private void aplicarEstiloExplodir() {
+
+        setBackground(BG_EXPLODIR);
+        setForeground(Color.WHITE);
+        setText("X");
+
+    }
+
+    private void aplicarEstiloPadrao() {
+
+        setBorder(BorderFactory.createBevelBorder(0));
+        setBackground(BG_PADRAO);
+        setText("");
+
+    }
+
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -123,16 +123,21 @@ public class BotaoCampo extends JButton implements CampoObservador, MouseListene
         }
     }
 
+
     public void mouseClicked(MouseEvent e) {
+        // TODO document why this method is empty
     }
 
     public void mouseReleased(MouseEvent e) {
+        // TODO document why this method is empty
     }
 
     public void mouseEntered(MouseEvent e) {
+        // TODO document why this method is empty
     }
 
     public void mouseExited(MouseEvent e) {
+        // TODO document why this method is empty
     }
 
 }
