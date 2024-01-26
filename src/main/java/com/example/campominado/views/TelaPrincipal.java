@@ -6,6 +6,10 @@ import javax.swing.*;
 
 public class TelaPrincipal extends JFrame {
 
+    public static void main(String[] args) {
+        new TelaPrincipal();
+    }
+
     public TelaPrincipal() {
 
         Tabuleiro tabuleiro = new Tabuleiro(16, 30, 50);
@@ -21,10 +25,6 @@ public class TelaPrincipal extends JFrame {
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-    }
-
-    public static void main(String[] args) {
-        new TelaPrincipal();
     }
 
 }
