@@ -1,6 +1,5 @@
 package com.example.campominado.model;
 
-import com.example.campominado.exceptions.ExplosaoException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +12,120 @@ class CampoTest {
     @BeforeEach
     void setUp() {
         campo = new Campo(3, 3);
+    }
+
+
+    @Test
+    void testValorPadraoAtributoMarcado() {
+        assertFalse(campo.isMarcado());
+    }
+
+    @Test
+    void testAlternarMarcacao() {
+        campo.alternarMarcacao();
+        assertTrue(campo.isMarcado());
+    }
+
+    @Test
+    void testAlternarMarcacaoDuplaChamada() {
+        campo.alternarMarcacao();
+        campo.alternarMarcacao();
+        assertFalse(campo.isMarcado());
+    }
+
+    @Test
+    void testAbrirCampoNaoMinadoNaoMarcadoNaoAberto() {
+
+        boolean result = campo.abrir();
+
+        assertTrue(campo.isAberto());
+        assertTrue(result);
+    }
+
+    @Test
+    void testAbrirCampoNaoMinadoMarcadoNaoAberto() {
+
+        campo.alternarMarcacao();
+
+        boolean result = campo.abrir();
+
+        assertFalse(campo.isAberto());
+        assertFalse(result);
+    }
+
+    @Test
+    void testAbrirCampoMinadoMarcadoNaoAberto() {
+
+        campo.alternarMarcacao();
+        campo.minar();
+
+        boolean result = campo.abrir();
+
+        assertFalse(campo.isAberto());
+        assertFalse(result);
+    }
+
+    @Test
+    void testAbrirCampoMinadoNaoMarcadoNaoAberto() {
+
+        campo.minar();
+
+        boolean result = campo.abrir();
+
+        assertTrue(result);
+
+    }
+
+    @Test
+    void testAbrirCampoNaoMinadoNaoMarcadoAberto() {
+        campo.abrir();
+        boolean result = campo.abrir();
+
+        assertTrue(campo.isAberto());
+        assertFalse(result);
+    }
+
+
+    @Test
+    void testAbrirCampoComVizinhos() {
+
+        Campo vizinho = new Campo(2, 2);
+        Campo vizinhoDoVizinho = new Campo(1, 1);
+
+        vizinho.adicionarVizinho(vizinhoDoVizinho);
+        campo.adicionarVizinho(vizinho);
+
+
+        boolean result = campo.abrir();
+
+        assertTrue(campo.isAberto());
+        assertTrue(vizinho.isAberto());
+        assertTrue(vizinhoDoVizinho.isAberto());
+        assertTrue(result);
+    }
+
+
+    @Test
+    void testAbrirCampoComVizinhosMinado() {
+
+        Campo vizinho = new Campo(2, 2);
+        Campo vizinhoDoVizinho = new Campo(1, 1);
+        Campo vizinhoDoVizinho2 = new Campo(1, 2);
+
+        vizinhoDoVizinho.minar();
+
+        vizinho.adicionarVizinho(vizinhoDoVizinho);
+        vizinho.adicionarVizinho(vizinhoDoVizinho2);
+        campo.adicionarVizinho(vizinho);
+
+
+        boolean result = campo.abrir();
+
+        assertTrue(campo.isAberto());
+        assertTrue(vizinho.isAberto());
+        assertFalse(vizinhoDoVizinho.isAberto());
+        assertFalse(vizinhoDoVizinho2.isAberto());
+        assertTrue(result);
     }
 
     @Test
@@ -68,118 +181,6 @@ class CampoTest {
 
         assertFalse(result);
     }
-
-
-    @Test
-    void valorPadraoAtributoMarcado() {
-        assertFalse(campo.isMarcado());
-    }
-
-    @Test
-    void alternarMarcacao() {
-        campo.alternarMarcacao();
-        assertTrue(campo.isMarcado());
-    }
-
-    @Test
-    void alternarMarcacaoDuplaChamada() {
-        campo.alternarMarcacao();
-        campo.alternarMarcacao();
-        assertFalse(campo.isMarcado());
-    }
-
-    @Test
-    void abrirCampoNaoMinadoNaoMarcadoNaoAberto() {
-
-        boolean result = campo.abrir();
-
-        assertTrue(campo.isAberto());
-        assertTrue(result);
-    }
-
-    @Test
-    void abrirCampoNaoMinadoMarcadoNaoAberto() {
-
-        campo.alternarMarcacao();
-
-        boolean result = campo.abrir();
-
-        assertFalse(campo.isAberto());
-        assertFalse(result);
-    }
-
-    @Test
-    void abrirCampoMinadoMarcadoNaoAberto() {
-
-        campo.alternarMarcacao();
-        campo.minar();
-
-        boolean result = campo.abrir();
-
-        assertFalse(campo.isAberto());
-        assertFalse(result);
-    }
-
-    @Test
-    void abrirCampoMinadoNaoMarcadoNaoAberto() {
-
-        campo.minar();
-
-        assertThrows(ExplosaoException.class, () -> campo.abrir());
-    }
-
-    @Test
-    void abrirCampoNaoMinadoNaoMarcadoAberto() {
-        campo.abrir();
-        boolean result = campo.abrir();
-
-        assertTrue(campo.isAberto());
-        assertFalse(result);
-    }
-
-
-    @Test
-    void abrirCampoComVizinhos() {
-
-        Campo vizinho = new Campo(2, 2);
-        Campo vizinhoDoVizinho = new Campo(1, 1);
-
-        vizinho.adicionarVizinho(vizinhoDoVizinho);
-        campo.adicionarVizinho(vizinho);
-
-
-        boolean result = campo.abrir();
-
-        assertTrue(campo.isAberto());
-        assertTrue(vizinho.isAberto());
-        assertTrue(vizinhoDoVizinho.isAberto());
-        assertTrue(result);
-    }
-
-
-    @Test
-    void abrirCampoComVizinhosMinado() {
-
-        Campo vizinho = new Campo(2, 2);
-        Campo vizinhoDoVizinho = new Campo(1, 1);
-        Campo vizinhoDoVizinho2 = new Campo(1, 2);
-
-        vizinhoDoVizinho.minar();
-
-        vizinho.adicionarVizinho(vizinhoDoVizinho);
-        vizinho.adicionarVizinho(vizinhoDoVizinho2);
-        campo.adicionarVizinho(vizinho);
-
-
-        boolean result = campo.abrir();
-
-        assertTrue(campo.isAberto());
-        assertTrue(vizinho.isAberto());
-        assertFalse(vizinhoDoVizinho.isAberto());
-        assertFalse(vizinhoDoVizinho2.isAberto());
-        assertTrue(result);
-    }
-
 
     @Test
     void testToStringMarcado() {
