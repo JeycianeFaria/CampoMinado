@@ -2,6 +2,8 @@ package com.example.campominado.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -128,36 +130,15 @@ class CampoTest {
         assertTrue(result);
     }
 
-    @Test
-    void adicionarVizinhoCenarioPositivoNaoDiagonalEsquerda() {
-        Campo viznho = new Campo(3, 2);
-
-        boolean result = campo.adicionarVizinho(viznho);
-
-        assertTrue(result);
-    }
-
-    @Test
-    void adicionarVizinhoCenarioPositivoNaoDiagonalDireita() {
-        Campo viznho = new Campo(3, 4);
-
-        boolean result = campo.adicionarVizinho(viznho);
-
-        assertTrue(result);
-    }
-
-    @Test
-    void adicionarVizinhoCenarioPositivoDiagonalEmCima() {
-        Campo viznho = new Campo(2, 2);
-
-        boolean result = campo.adicionarVizinho(viznho);
-
-        assertTrue(result);
-    }
-
-    @Test
-    void adicionarVizinhoCenarioPositivoDiagonalEmBaixo() {
-        Campo viznho = new Campo(4, 4);
+    @ParameterizedTest
+    @CsvSource({
+            "3, 2",
+            "3, 4",
+            "2, 2",
+            "4, 4"
+    })
+    void testadicionarVizinhoCenarioPositivo(Integer linha, Integer coluna) {
+        Campo viznho = new Campo(linha, coluna);
 
         boolean result = campo.adicionarVizinho(viznho);
 
