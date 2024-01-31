@@ -145,18 +145,15 @@ class CampoTest {
         assertTrue(result);
     }
 
-    @Test
-    void adicionarVizinhoCenarioNegativoNaoDiagonal() {
-        Campo viznho = new Campo(3, 1);
-
-        boolean result = campo.adicionarVizinho(viznho);
-
-        assertFalse(result);
-    }
-
-    @Test
-    void adicionarVizinhoCenarioNegativoDiagonal() {
-        Campo viznho = new Campo(1, 1);
+    @ParameterizedTest
+    @CsvSource({
+            "3, 1",
+            "1, 1",
+            "1, 3",
+            "5, 5"
+    })
+    void testAdicionarVizinhoCenarioNegativo(Integer linha, Integer coluna) {
+        Campo viznho = new Campo(linha, coluna);
 
         boolean result = campo.adicionarVizinho(viznho);
 
