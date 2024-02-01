@@ -174,6 +174,17 @@ class CampoTest {
 
     }
 
+    @Test
+    void testRegistrarObservadores(){
+
+        Tabuleiro tabuleiro = new Tabuleiro(3,3,3);
+
+        campo.registrarObservadores(tabuleiro);
+
+        assertEquals(1, campo.getObservadores().size());
+
+    }
+
 
     @Test
     void testReiniciar() {
