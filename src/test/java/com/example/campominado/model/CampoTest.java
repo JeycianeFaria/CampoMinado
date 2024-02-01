@@ -160,6 +160,20 @@ class CampoTest {
         assertFalse(result);
     }
 
+    @Test
+    void testMinasNaVizinhaca(){
+
+        Campo viznho = new Campo(2, 3);
+        viznho.minar();
+
+        campo.adicionarVizinho(viznho);
+
+        int result = campo.minasNaVizinhaca();
+
+        assertEquals(1 , result);
+
+    }
+
 
     @Test
     void testReiniciar() {
