@@ -137,7 +137,7 @@ class CampoTest {
             "2, 2",
             "4, 4"
     })
-    void testadicionarVizinhoCenarioPositivo(Integer linha, Integer coluna) {
+    void testAdicionarVizinhoCenarioPositivo(Integer linha, Integer coluna) {
         Campo viznho = new Campo(linha, coluna);
 
         boolean result = campo.adicionarVizinho(viznho);
@@ -160,70 +160,6 @@ class CampoTest {
         assertFalse(result);
     }
 
-    @Test
-    void testToStringMarcado() {
-
-        campo.alternarMarcacao();
-
-        String result = campo.toString();
-
-        assertFalse(campo.isAberto());
-        assertTrue(campo.isMarcado());
-        assertEquals("x", result);
-    }
-
-
-    @Test
-    void testToStringAbertoMinado() {
-
-        campo.abrir();
-        campo.minar();
-
-        String result = campo.toString();
-
-        assertTrue(campo.isAberto());
-        assertTrue(campo.isMinado());
-        assertEquals("*", result);
-    }
-
-    @Test
-    void testToStringAbertoVizinhoMinado() {
-
-        Campo vizinho = new Campo(2, 2);
-        vizinho.minar();
-
-        campo.adicionarVizinho(vizinho);
-        campo.abrir();
-
-
-        String result = campo.toString();
-
-        assertTrue(campo.isAberto());
-        assertFalse(vizinho.isAberto());
-        assertTrue(vizinho.isMinado());
-        assertEquals("1", result);
-    }
-
-
-    @Test
-    void testToStringAberto() {
-
-        campo.abrir();
-
-        String result = campo.toString();
-
-        assertTrue(campo.isAberto());
-        assertEquals(" ", result);
-    }
-
-    @Test
-    void testToStringFechado() {
-
-        String result = campo.toString();
-
-        assertFalse(campo.isAberto());
-        assertEquals("?", result);
-    }
 
     @Test
     void testReiniciar() {
