@@ -49,6 +49,10 @@ public class Campo {
 
     }
 
+    public List<CampoObservador> getObservadores() {
+        return observadores;
+    }
+
 
     public boolean abrir() {
 
