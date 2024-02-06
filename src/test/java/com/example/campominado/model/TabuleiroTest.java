@@ -46,6 +46,19 @@ class TabuleiroTest {
     }
 
     @Test
+    void testMostrarMinas(){
+        Campo campo = tabuleiro.getCampo(1,1);
+        campo.minar();
+
+
+        tabuleiro.mostrarMinas();
+
+        assertTrue(campo.isMinado());
+        assertTrue(campo.isAberto());
+        assertFalse(campo.isMarcado());
+    }
+
+    @Test
     void testMarcarCampo() {
 
         var campo = tabuleiro.getCampo(1, 1);
