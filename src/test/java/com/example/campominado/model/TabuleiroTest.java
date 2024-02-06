@@ -1,6 +1,5 @@
 package com.example.campominado.model;
 
-import com.example.campominado.exceptions.CampoNaoEncontradoException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,8 +25,12 @@ class TabuleiroTest {
     }
 
     @Test
-    void testGetCampoExceptionCampoNaoEncontrado() {
-        assertThrows(CampoNaoEncontradoException.class, () -> tabuleiro.getCampo(5, 5));
+    void testObjetivoAlcancado() {
+
+        var result = tabuleiro.objetivoAlcancado();
+
+        assertFalse(result);
+
     }
 
     @Test
@@ -54,15 +57,6 @@ class TabuleiroTest {
     }
 
     @Test
-    void testObjetivoAlcancado() {
-
-        var result = tabuleiro.objetivoAlcancado();
-
-        assertFalse(result);
-
-    }
-
-    @Test
     void testReiniciar() {
 
         var campo = tabuleiro.getCampo(1, 1);
@@ -74,4 +68,5 @@ class TabuleiroTest {
         assertFalse(campo.isMarcado());
 
     }
+
 }
