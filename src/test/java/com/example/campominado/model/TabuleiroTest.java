@@ -82,4 +82,21 @@ class TabuleiroTest {
 
     }
 
+    @Test
+    void testEventoOcorreuExplodir() {
+
+        Campo campo = tabuleiro.getCampo(1,1);
+        campo.minar();
+        tabuleiro.abrirCampo(1,1);
+
+        CampoEvento evento = CampoEvento.EXPLODIR;
+
+        tabuleiro.eventoOcorreu(campo, evento);
+
+        assertTrue(campo.isAberto());
+        assertTrue(campo.isMinado());
+        assertFalse(campo.isMarcado());
+
+    }
+
 }
