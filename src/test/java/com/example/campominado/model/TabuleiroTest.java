@@ -99,4 +99,23 @@ class TabuleiroTest {
 
     }
 
+    @Test
+    void testEventoOcorreuObjetivoAlcancado() {
+
+        Tabuleiro tabuleiro_test = new Tabuleiro(1,1,1);
+
+        tabuleiro_test.marcarCampo(0,0);
+        Campo campo = tabuleiro_test.getCampo(0,0);
+
+        CampoEvento evento = CampoEvento.MARCAR;
+
+        tabuleiro_test.eventoOcorreu(campo, evento);
+
+        assertFalse(campo.isAberto());
+        assertTrue(campo.isMinado());
+        assertTrue(campo.isMarcado());
+        assertTrue(tabuleiro_test.objetivoAlcancado());
+
+    }
+
 }
