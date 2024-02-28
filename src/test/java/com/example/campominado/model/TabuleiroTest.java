@@ -15,6 +15,24 @@ class TabuleiroTest {
     }
 
     @Test
+    void testGetLinhas() {
+
+        var result = tabuleiro.getLinhas();
+
+        assertEquals(2, result);
+
+    }
+
+    @Test
+    void testGetColunas() {
+
+        var result = tabuleiro.getColunas();
+
+        assertEquals(2, result);
+
+    }
+
+    @Test
     void testGetCampo() {
 
         var result = tabuleiro.getCampo(1, 1);
