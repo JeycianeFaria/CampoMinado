@@ -1,5 +1,7 @@
 package com.example.campominado.model;
 
+import com.example.campominado.exceptions.CampoNaoEncontradoException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -41,7 +43,7 @@ public class Tabuleiro implements CampoObservador {
                 .findFirst();
 
         if (campoOptional.isEmpty()) {
-            //TODO Implementar nova versao
+            throw new CampoNaoEncontradoException("Campo não encontrado!");
         }
 
         return campoOptional.get();
