@@ -1,5 +1,6 @@
 package com.example.campominado.model;
 
+import com.example.campominado.exceptions.CampoNaoEncontradoException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -43,6 +44,21 @@ class TabuleiroTest {
     }
 
     @Test
+    void testGetCampoException() {
+
+        Tabuleiro tabuleiro_test = new Tabuleiro(1, 1, 0);
+
+        RuntimeException exception = assertThrows(CampoNaoEncontradoException.class,
+                () -> {
+                    tabuleiro_test.getCampo(1, 1);
+                });
+
+        assertEquals(CampoNaoEncontradoException.class, exception.getClass());
+        assertEquals("Campo não encontrado!", exception.getMessage());
+
+    }
+
+    @Test
     void testObjetivoAlcancado() {
 
         var result = tabuleiro.objetivoAlcancado();
@@ -64,8 +80,8 @@ class TabuleiroTest {
     }
 
     @Test
-    void testMostrarMinas(){
-        Campo campo = tabuleiro.getCampo(1,1);
+    void testMostrarMinas() {
+        Campo campo = tabuleiro.getCampo(1, 1);
         campo.minar();
 
 
@@ -103,9 +119,9 @@ class TabuleiroTest {
     @Test
     void testEventoOcorreuExplodir() {
 
-        Campo campo = tabuleiro.getCampo(1,1);
+        Campo campo = tabuleiro.getCampo(1, 1);
         campo.minar();
-        tabuleiro.abrirCampo(1,1);
+        tabuleiro.abrirCampo(1, 1);
 
         CampoEvento evento = CampoEvento.EXPLODIR;
 
@@ -120,10 +136,10 @@ class TabuleiroTest {
     @Test
     void testEventoOcorreuObjetivoAlcancado() {
 
-        Tabuleiro tabuleiro_test = new Tabuleiro(1,1,1);
+        Tabuleiro tabuleiro_test = new Tabuleiro(1, 1, 1);
 
-        tabuleiro_test.marcarCampo(0,0);
-        Campo campo = tabuleiro_test.getCampo(0,0);
+        tabuleiro_test.marcarCampo(0, 0);
+        Campo campo = tabuleiro_test.getCampo(0, 0);
 
         CampoEvento evento = CampoEvento.MARCAR;
 
