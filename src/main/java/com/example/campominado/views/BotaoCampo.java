@@ -35,18 +35,10 @@ public class BotaoCampo extends JButton implements CampoObservador, MouseListene
     @Override
     public void eventoOcorreu(Campo campo, CampoEvento evento) {
         switch (evento) {
-            case ABRIR:
-                aplicarEstiloAbrir();
-                break;
-            case MARCAR:
-                aplicarEstiloMarcar();
-                break;
-            case EXPLODIR:
-                aplicarEstiloExplodir();
-                break;
-            default:
-                aplicarEstiloPadrao();
-                break;
+            case ABRIR -> aplicarEstiloAbrir();
+            case MARCAR -> aplicarEstiloMarcar();
+            case EXPLODIR -> aplicarEstiloExplodir();
+            default -> aplicarEstiloPadrao();
         }
 
         SwingUtilities.invokeLater(() -> {
@@ -66,20 +58,11 @@ public class BotaoCampo extends JButton implements CampoObservador, MouseListene
         }
 
         switch (campo.minasNaVizinhaca()) {
-            case 1:
-                setForeground(TEXTO_VERDE);
-                break;
-            case 2:
-                setForeground(Color.BLUE);
-                break;
-            case 3:
-                setForeground(Color.YELLOW);
-                break;
-            case 4, 5, 6:
-                setForeground(Color.ORANGE);
-                break;
-            default:
-                setForeground(Color.RED);
+            case 1 -> setForeground(TEXTO_VERDE);
+            case 2 -> setForeground(Color.BLUE);
+            case 3 -> setForeground(Color.YELLOW);
+            case 4, 5, 6 -> setForeground(Color.ORANGE);
+            default -> setForeground(Color.RED);
         }
 
         String valor = !campo.vizinhancaSegura() ? campo.minasNaVizinhaca() + "" : "";
